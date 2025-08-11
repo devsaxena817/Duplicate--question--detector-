@@ -3,6 +3,8 @@
 A machine learning project that detects whether two given questions are duplicates or not — useful for Q&A forums like Quora or Stack Overflow.
 
 ---
+## 🚀 Live Demo
+Try the app here: [Duplicate Question Detector](https://2rzqgbcteq4hhxysadb5gf.streamlit.app/)
 
 ## 📌 Features
 - **BERT-based sentence embeddings** (via SentenceTransformers `all-MiniLM-L6-v2`)
