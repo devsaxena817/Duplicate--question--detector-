@@ -1,9 +1,8 @@
 import streamlit as st
 import numpy as np
-import helper  # your helper.py with query_point_creator and preprocess functions
+import helper  # your helper.py file with create_feature_vector function
 import pickle
 
-# Load your trained model once
 @st.cache_resource(show_spinner=False)
 def load_model():
     with open('model.pkl', 'rb') as f:
@@ -26,7 +25,6 @@ st.markdown(
     """
 )
 
-# Text inputs with placeholders for better UX
 q1 = st.text_area("Enter Question 1:", placeholder="Type your first question here...", height=100)
 q2 = st.text_area("Enter Question 2:", placeholder="Type your second question here...", height=100)
 
@@ -35,12 +33,8 @@ if st.button("Check Duplicate"):
         st.warning("Please enter both questions before checking.")
     else:
         try:
-            # Prepare features for the model using your helper function
-            query_features = helper.query_point_creator(q1, q2)
-            
-            # Predict (model expects 2D array)
+            query_features = helper.create_feature_vector(q1, q2)
             prediction = model.predict(query_features)[0]
-            
             if prediction == 1:
                 st.success("✅ These questions are duplicates!")
             else:
@@ -50,4 +44,3 @@ if st.button("Check Duplicate"):
 
 st.markdown("---")
 st.caption("Developed by Dev Saxena | Powered by XGBoost & NLP")
-
